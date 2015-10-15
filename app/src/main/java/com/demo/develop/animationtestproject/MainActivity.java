@@ -46,8 +46,14 @@ public class MainActivity extends Activity {
                     @Override
                     public void onGlobalLayout() {
                         int h = relativeLayout.getHeight();
-                        relativeLayout.getViewTreeObserver()
-                                .removeOnGlobalLayoutListener(this);
+                        if (relativeLayout.getViewTreeObserver() != null) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                                relativeLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                            }
+                            else{
+                                relativeLayout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                            }
+                        }
                         convertPixelsToDp(h, getApplicationContext());
                     }
                 });
@@ -55,7 +61,7 @@ public class MainActivity extends Activity {
 
     private float convertPixelsToDp(int px, Context context){
         float dp = px;
-        imageView.getLayoutParams().height = (int) dp/ PART_OF_SCREEN;
+        imageView.getLayoutParams().height = (int) dp/PART_OF_SCREEN;
         imageView.getLayoutParams().width = (int) dp/PART_OF_SCREEN;
         return dp;
     }
