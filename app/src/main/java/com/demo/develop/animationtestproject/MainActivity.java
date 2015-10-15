@@ -45,7 +45,7 @@ public class MainActivity extends Activity {
 
                     @Override
                     public void onGlobalLayout() {
-                        int h = relativeLayout.getHeight();
+                        int heidht = relativeLayout.getHeight();
                         if (relativeLayout.getViewTreeObserver() != null) {
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 relativeLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
@@ -54,7 +54,7 @@ public class MainActivity extends Activity {
                                 relativeLayout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                             }
                         }
-                        convertPixelsToDp(h, getApplicationContext());
+                        convertPixelsToDp(heidht, getApplicationContext());
                     }
                 });
     }
